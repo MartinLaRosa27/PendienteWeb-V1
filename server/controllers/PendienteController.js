@@ -18,3 +18,18 @@ exports.PostPendiente = async (req, res) => {
     res.send(e.errors[0].message);
   }
 };
+
+exports.DeletePendiente = async (req, res) => {
+  const iCount = await Pendiente.count();
+  try {
+    await Pendiente.destroy({ where: { _id: req.params.id } });
+    const uCount = await Pendiente.count();
+    if (uCount >= iCount) {
+      res.send("No se pudo eliminar el pendiente");
+    }else{
+      res.send("Pendiente eliminado");
+    }
+  } catch (e) {
+    res.send("No se pudo eliminar el pendiente");
+  }
+};

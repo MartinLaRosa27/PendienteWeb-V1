@@ -8,5 +8,7 @@ module.exports = () => {
 
   router.post("/post-pendiente", pendienteController.PostPendiente);
 
+  router.delete("/delete-pendiente/:id", pendienteController.DeletePendiente);
+
   return router;
 };
